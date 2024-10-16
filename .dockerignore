@@ -1,0 +1,37 @@
+# Ignore IDE and editor configuration files
+**/.idea
+**/.vs
+**/.vscode
+**/.classpath
+**/.project
+**/.settings
+**/.toolstarget
+
+# Ignore coverage and temporary files
+**/.coverage*
+**/.celerybeat.pid*
+**/*.dbmdl
+**/*.jfm
+
+# Ignore environment and sensitive files
+**/.env
+**/secrets.dev.yaml
+**/values.dev.yaml
+
+# Ignore version control files
+**/.git
+**/.gitignore
+
+# Ignore build artifacts and logs
+**/node_modules
+**/npm-debug.log
+**/obj
+
+# Ignore Docker-related files (optional)
+**/.dockerignore
+**/docker-compose*
+**/Dockerfile*
+
+# Ignore project-specific files
+**/azds.yaml
+**/charts
