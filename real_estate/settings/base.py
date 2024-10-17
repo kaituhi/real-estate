@@ -1,14 +1,13 @@
-import environ
 import logging
 import logging.config
-
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
 
+import environ
 from django.utils.log import DEFAULT_LOGGING
 
 # Setting up environment variables using the 'django-environ' package
-env = environ.Env(DEBUG=(bool, False)) # DEBUG will be a boolean, default is False
+env = environ.Env(DEBUG=(bool, False))  # DEBUG will be a boolean, default is False
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -43,7 +42,7 @@ DJANGO_APPS = [
 ]
 
 # Refers to the default site in the django_site database table
-SITE_ID = 1 
+SITE_ID = 1
 
 THIRD_PARTY_APPS = [
     "rest_framework",  # For building REST APIs
@@ -82,8 +81,8 @@ ROOT_URLCONF = "real_estate.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [], # Directories for custom templates
-        "APP_DIRS": True, # Look for templates inside app directories
+        "DIRS": [],  # Directories for custom templates
+        "APP_DIRS": True,  # Look for templates inside app directories
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -137,8 +136,8 @@ USE_TZ = True
 
 # URLs and directories for static and media files
 STATIC_URL = "/staticfiles/"
-STATIC_ROOT = BASE_DIR / "staticfiles" # Where collected static files will go
-STATICFILES_DIR = [] # Extra directories for static files
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Where collected static files will go
+STATICFILES_DIR = []  # Extra directories for static files
 
 MEDIA_URL = "/mediafiles/"
 # Where user-uploaded files (like profile pictures) are stored
@@ -153,7 +152,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom user model (defined in apps.users)
 AUTH_USER_MODEL = "users.User"
 
-# REST Framework settings 
+# REST Framework settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -172,7 +171,7 @@ SIMPLE_JWT = {
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
 }
 
-# Djoser is a Django app that provides a set of RESTful endpoints for user authentication and management. 
+# Djoser is a Django app that provides a set of RESTful endpoints for user authentication and management.
 # It simplifies the process of handling user registration, login, password resets, and account activation.
 DJOSER = {
     "LOGIN_FIELD": "email",  # Users log in using their email
@@ -183,12 +182,11 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
     "SET_PASSWORD_RETYPE": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
-    "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}", 
+    "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "activate/{uid}/{token}",  # URL for account activation
     "SEND_ACTIVATION_EMAIL": True,  # Send activation email after registration
-    
     # Custom serializers for user operations
-    "SERIALIZERS": { 
+    "SERIALIZERS": {
         "user_create": "apps.users.serializers.CreateUserSerializer",  # Serializer for new user creation
         "user": "apps.users.serializers.UserSerializer",  # Serializer for retrieving user info
         "current_user": "apps.users.serializers.UserSerializer",  # Serializer for current user's info
@@ -207,21 +205,23 @@ logging.config.dictConfig(
         "disable_existing_loggers": False,
         "formatters": {
             "console": {
-                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s", # Format for console output
+                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",  # Format for console output
             },
-            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"}, # Format for file output
+            "file": {
+                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+            },  # Format for file output
             "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
         },
         "handlers": {
             "console": {
-                "class": "logging.StreamHandler", # Outputs logs to the console
-                "formatter": "console", # Use the console formatter defined above
+                "class": "logging.StreamHandler",  # Outputs logs to the console
+                "formatter": "console",  # Use the console formatter defined above
             },
             "file": {
-                "level": "INFO", 
-                "class": "logging.FileHandler", # Outputs logs to a file
-                "formatter": "file", # Use the file formatter defined above
-                "filename": "logs/real_estate.log", # File to which logs will be written
+                "level": "INFO",
+                "class": "logging.FileHandler",  # Outputs logs to a file
+                "formatter": "file",  # Use the file formatter defined above
+                "filename": "logs/real_estate.log",  # File to which logs will be written
             },
             "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
         },

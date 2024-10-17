@@ -12,6 +12,6 @@ class ProfileJSONRenderer(JSONRenderer):
         if errors is not None:
             return super(ProfileJSONRenderer, self).render(data)
 
-        # If no errors, wrap the data in a "profile" key 
+        # If no errors, wrap the data in a "profile" key
         # and return it as a JSON string
         return json.dumps({"profile": data})

@@ -70,14 +70,14 @@ class UserAdmin(BaseUserAdmin):
     # Define fields to be displayed when adding a new user
     add_fieldsets = (
         (
-            None, # No title for this section
+            None,  # No title for this section
             {
-                "classes": ("wide",), # CSS classes to apply to this fieldset
+                "classes": ("wide",),  # CSS classes to apply to this fieldset
                 "fields": ("email", "password1", "password2", "is_staff", "is_active"),
             },
         ),
     )
-    
+
     # Define searchable fields in the admin panel
     search_fields = ["email", "username", "first_name", "last_name"]
 

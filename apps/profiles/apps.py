@@ -7,7 +7,7 @@ class ProfilesConfig(AppConfig):
 
     def ready(self):
         """
-        This method is called when the app is ready. 
-        Importing signals here ensures they are registered 
+        This method is called when the app is ready.
+        Importing signals here ensures they are registered
         """
         from apps.profiles import signals

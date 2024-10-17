@@ -7,11 +7,11 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = User
         fields = ["email", "username", "first_name", "last_name"]
-        error_class = "error" # CSS class to apply for form errors
+        error_class = "error"  # CSS class to apply for form errors
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ["email", "username", "first_name", "last_name"]
-        error_class = "error" # CSS class to apply for form errors
+        error_class = "error"  # CSS class to apply for form errors
