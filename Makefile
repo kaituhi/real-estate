@@ -75,13 +75,13 @@ black:
 	docker-compose exec api black --exclude='migrations|.venv' .
 
 # Target to check the import order using `isort` inside the `api` service (without making changes).
-isort-check:
-	docker-compose exec api isort . --check-only --skip env --skip migrations
+isort-check: 
+	docker-compose exec api isort . --check-only --skip env --skip migrations --skip .venv
 
 # Target to show the diff of import order changes suggested by `isort` inside the `api` service.
-isort-diff:
-	docker-compose exec api isort . --diff --skip env --skip migrations
+isort-diff: 
+	docker-compose exec api isort . --diff --skip env --skip migrations --skip .venv
 
 # Target to auto-format import order using `isort` inside the `api` service.
-isort:
-	docker-compose exec api isort . --skip env --skip migrations
+isort: 
+	docker-compose exec api isort . --skip env --skip migrations --skip .venv
