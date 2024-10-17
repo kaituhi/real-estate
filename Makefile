@@ -64,15 +64,15 @@ flake8:
 
 # Target to check if the code is formatted with `black` inside the `api` service.
 black-check:
-	docker-compose exec api black --check --exclude=migrations .
+	docker-compose exec api black --check --exclude='migrations|.venv' .
 
 # Target to see a diff of formatting changes suggested by `black` inside the `api` service.
 black-diff:
-	docker compose exec api black --diff --exclude=migrations .
+	docker compose exec api black --diff --exclude='migrations|.venv' .
 
 # Target to auto-format the code using `black` inside the `api` service.
 black:
-	docker-compose exec api black --exclude=migrations .
+	docker-compose exec api black --exclude='migrations|.venv' .
 
 # Target to check the import order using `isort` inside the `api` service (without making changes).
 isort-check:
