@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -o errexit
+
+set -o nounset
+
+watchmedo auto-restart -d real_estate -p "*.py" -- celery -A real_estate.celery_app worker --loglevel=info
+celery -A real_estate.celery_app worker --loglevel=info

@@ -41,5 +41,11 @@ COPY ./docker/local/django/start /start
 RUN sed -i 's/\r$//g' /start && \
     chmod +x /start
 
+COPY ./docker/local/django/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker && chmod +x /start-celeryworker
+
+COPY ./docker/local/django/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower && chmod +x /start-flower
+
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint"]

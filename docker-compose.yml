@@ -1,3 +1,4 @@
+version: '3'
 services:
   api:
     build:
@@ -12,6 +13,7 @@ services:
       - .env
     depends_on:
       - postgres-db
+      - redis
     networks:
       - estate-react
 
@@ -25,6 +27,44 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
+    networks:
+      - estate-react
+
+  redis:
+    image: redis:alpine
+    networks:
+      - estate-react
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres-db
+    networks:
+      - estate-react
+
+  flower:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
+    command: /start-flower
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"
+    depends_on:
+      - redis
+      - postgres-db
+      - celery_worker
     networks:
       - estate-react
 
