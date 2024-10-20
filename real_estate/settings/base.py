@@ -28,8 +28,9 @@ DEBUG = env("DEBUG")
 # Hosts that are allowed to access the project
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
-
-# Application definition
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8080',
+]
 
 DJANGO_APPS = [
     "django.contrib.contenttypes",
